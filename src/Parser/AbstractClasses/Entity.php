@@ -14,6 +14,14 @@ abstract class Entity
     protected $parameters;
 
     /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @return mixed
      */
     public function getTable()

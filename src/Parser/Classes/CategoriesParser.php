@@ -36,7 +36,7 @@ class CategoriesParser extends Parser implements \Parser\Interfaces\CategoriesPa
     public function getCategoryLink()
     {
         if ($link = $this->categoryBlock->find(CATEGORY_LINK_SELECTOR)) {
-            return SITE_TO_PARSE . trim($this->categoryBlock->find(CATEGORY_LINK_SELECTOR)[0]->href);
+            return SITE_TO_PARSE . trim($link[0]->href);
         } else {
             throw new \Exception("Couldn`t find category link");
         }
