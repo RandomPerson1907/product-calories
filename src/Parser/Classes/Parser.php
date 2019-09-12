@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Classes;
+namespace Parser\Classes;
 
 
-class Parser implements \App\Interfaces\Parser
+class Parser implements \Parser\Interfaces\Parser
 {
 
     public function getElementsByClass($class)

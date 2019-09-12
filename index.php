@@ -1,7 +1,6 @@
 <?php
 
-
-use App\Application;
+use Parser\Application;
 
 require_once "vendor/autoload.php";
 

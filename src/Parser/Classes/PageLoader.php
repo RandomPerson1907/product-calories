@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Classes;
+namespace Parser\Classes;
 
 
 use Sunra\PhpSimple\HtmlDomParser;
 
-class PageLoader implements \App\Interfaces\PageLoader
+class PageLoader implements \Parser\Interfaces\PageLoader
 {
     private $page;
     private $loadResult;

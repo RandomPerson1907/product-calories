@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Classes;
+namespace Parser\Classes;
 
 
-class ProductsParser extends Parser implements \App\Interfaces\ProductsParser
+class ProductsParser extends Parser implements \Parser\Interfaces\ProductsParser
 {
 
     public function getProducts()

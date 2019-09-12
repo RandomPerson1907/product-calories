@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+namespace Parser;
 
-use App\Classes\CategoriesParser;
-use App\Classes\PageLoader;
-use App\Classes\ProductsParser;
+use Parser\Classes\CategoriesParser;
+use Parser\Classes\PageLoader;
+use Parser\Classes\ProductsParser;
+use Parser\Models\Product;
 
 class Application
 {

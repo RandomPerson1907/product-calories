@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces;
+namespace Parser\Interfaces;
 
 interface PageLoader
 {

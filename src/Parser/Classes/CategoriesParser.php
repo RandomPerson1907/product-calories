@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Classes;
+namespace Parser\Classes;
 
 
-class CategoriesParser extends Parser implements \App\Interfaces\CategoriesParser
+class CategoriesParser extends Parser implements \Parser\Interfaces\CategoriesParser
 {
 
     public function getCategories()
