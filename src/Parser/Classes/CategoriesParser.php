@@ -6,8 +6,9 @@ namespace Parser\Classes;
 
 class CategoriesParser extends Parser implements \Parser\Interfaces\CategoriesParser
 {
+    private $categoryBlock;
 
-    public function getCategories()
+    public function getCategories(String $link)
     {
         // TODO: Implement getCategories() method.
     }

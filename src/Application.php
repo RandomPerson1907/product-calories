@@ -39,6 +39,6 @@ class Application
 
     public function output()
     {
-        print "<pre>" . implode($this->output, "\n") . "</pre>";
+        print "<pre>" . implode((array)$this->output, "\n") . "</pre>";
     }
 }
