@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Interfaces;
+namespace App\Interfaces;
 
 
 interface ProductsParser
