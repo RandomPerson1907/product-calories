@@ -1,0 +1,19 @@
+{
+    "require": {
+        "sunra/php-simple-html-dom-parser": "^1.5"
+    },
+    "require-dev" : {
+        "filp/whoops" : "^2.5",
+        "symfony/var-dumper": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Monolog\\": "src/",
+            "Vendor\\Namespace\\": ""
+        },
+        "files" : [
+            "src/bootstrap.php",
+            "src/settings.php"
+        ]
+    }
+}
