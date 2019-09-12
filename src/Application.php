@@ -3,42 +3,26 @@
 namespace Parser;
 
 use Parser\Classes\CategoriesParser;
+use Parser\Classes\Database;
 use Parser\Classes\PageLoader;
 use Parser\Classes\ProductsParser;
 use Parser\Models\Product;
 
 class Application
 {
-    /**
-     * @var string
-     */
-    private $output = [];
-
     public function run()
     {
-        $pageLoader = new PageLoader();
         $categoriesParser = new CategoriesParser();
         $productsParser = new ProductsParser();
 
-        $pageLoader->load(PAGE_WITH_CATEGORIES);
+        Database::connect(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, DB_CHARSET);
 
-        if (!$pageLoader->getLoadResult()) {
-            $this->output[] = "Couldn`t page with categories";
+        foreach ($categoriesParser->getCategories(PAGE_WITH_CATEGORIES) as $category) {
+            $category->save(DB_CATEGORIES_TABLE, $category);
+
+            /*foreach ($productsParser->getProducts() as $product) {
+                dd($product);
+            }*/
         }
-
-        try {
-            foreach ($categoriesParser->getCategories() as $category) {
-                foreach ($productsParser->getProducts() as $product) {
-                    dd($product);
-                }
-            }
-        } catch (\Exception $e) {
-            $this->output[] = "Something went wrong. {$e->getMessage()}";
-        }
-    }
-
-    public function output()
-    {
-        print "<pre>" . implode((array)$this->output, "\n") . "</pre>";
     }
 }

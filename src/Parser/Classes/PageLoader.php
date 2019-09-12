@@ -9,26 +9,18 @@ use Sunra\PhpSimple\HtmlDomParser;
 class PageLoader implements \Parser\Interfaces\PageLoader
 {
     private $page;
-    private $loadResult;
 
     public function getPage()
     {
         return $this->page;
     }
 
-    public function getLoadResult()
-    {
-        return $this->loadResult;
-    }
-
-    public function load($url)
+    public function load($link)
     {
         try {
-            $this->page = $this->page = HtmlDomParser::file_get_html($url, false, null, 0);
-            $this->loadResult = true;
+            $this->page = HtmlDomParser::file_get_html($link, false, null, 0);
         } catch (\Exception $e) {
-            $this->page = false;
-            $this->loadResult = false;
+            throw new \Exception("Couldn`t load page {$link}");
         }
     }
 }

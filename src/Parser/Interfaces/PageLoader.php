@@ -4,7 +4,6 @@ namespace Parser\Interfaces;
 
 interface PageLoader
 {
-    public function load($url);
+    public function load($link);
     public function getPage();
-    public function getLoadResult();
 }

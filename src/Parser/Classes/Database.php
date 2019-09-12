@@ -8,7 +8,7 @@ use PDO;
 
 class Database
 {
-    protected $dbHandle;
+    protected static $dbHandle;
 
     /**
      * Entity constructor.
@@ -18,17 +18,34 @@ class Database
      * @param $dbPassword
      * @param string $dbCharset
      */
-    public function __construct($dbHost, $dbName, $dbUser, $dbPassword, $dbCharset = "utf-8")
+    public static function connect($dbHost, $dbName, $dbUser, $dbPassword, $dbCharset = "utf-8")
     {
         try {
-            $this->dbHandle = new PDO("mysql:host={$dbHost};dbname={$dbName};charset={$dbCharset}", $dbUser, $dbPassword);
+            self::$dbHandle = new PDO("mysql:host={$dbHost};dbname={$dbName};charset={$dbCharset}", $dbUser, $dbPassword);
         } catch (\Exception $e) {
-            $this->dbHandle = false;
+            self::$dbHandle = false;
         }
     }
 
-    protected function getDbHandle()
+    public static function getHandle()
     {
-        return $this->dbHandle;
+        return self::$dbHandle;
+    }
+
+    public static function runQuery(string $sql, $parameters)
+    {
+        $sth = self::$dbHandle->prepare($sql);
+
+        foreach ($parameters as $parameterKey => $parameterValue) {
+            $sth->bindParam(":{$parameterKey}", $parameterValue);
+        }
+
+        $result = $sth->execute();
+
+        if ($id = self::$dbHandle->lastInsertId()) {
+            return (int)self::$dbHandle->lastInsertId();
+        } else {
+            return $result;
+        }
     }
 }

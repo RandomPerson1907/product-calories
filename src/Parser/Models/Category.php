@@ -4,21 +4,25 @@
 namespace Parser\Models;
 
 
-use Parser\Interfaces\Entity;
-use Parser\Traits\DatabaseTrait;
+use Parser\AbstractClasses\Entity;
 
 /**
  * Class Category
  * @package Models
  */
-class Category implements Entity
+class Category extends Entity
 {
-    use DatabaseTrait;
-
     /**
      * @var String $name
      */
-    private $name;
+    protected $name;
+
+    /**
+     * @var String $link
+     */
+    protected $link;
+
+    protected $fillable = ["name"];
 
     /**
      * @return mixed
@@ -39,10 +43,20 @@ class Category implements Entity
     }
 
     /**
-     * Function for saving category in database
+     * @return String
      */
-    public function save()
+    public function getLink(): String
     {
-        // TODO: Implement save() method.
+        return $this->link;
+    }
+
+    /**
+     * @param String $link
+     * @return Category
+     */
+    public function setLink(String $link)
+    {
+        $this->link = $link;
+        return $this;
     }
 }

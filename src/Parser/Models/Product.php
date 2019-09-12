@@ -3,57 +3,56 @@
 
 namespace Parser\Models;
 
-use Parser\Interfaces\Entity;
-use Parser\Traits\DatabaseTrait;
+use Parser\AbstractClasses\Entity;
 
 /**
  * Class Product
  * @package Models
  */
-class Product implements Entity
+class Product extends Entity
 {
-    use DatabaseTrait;
-
     /**
      * @var String $name
      */
-    private $name;
+    protected $name;
 
     /**
      * @var Float $calories
      */
-    private $calories;
+    protected $calories;
 
     /**
      * @var Float $squirrels
      */
-    private $squirrels;
+    protected $squirrels;
 
     /**
      * @var Float $fats
      */
-    private $fats;
+    protected $fats;
 
     /**
      * @var Float $carbohydrates
      */
-    private $carbohydrates;
+    protected $carbohydrates;
 
     /**
      * @var Float $alimentaryFiber
      */
-    private $alimentaryFiber;
+    protected $alimentaryFiber;
 
     /**
      * @var Float $water
      */
-    private $water;
+    protected $water;
 
     /**
      * Additional attributes for products. For example, vitamins or minerals
      * @var array $additional
      */
-    private $additional;
+    protected $additional;
+
+    protected $fillable = ["name", "calories", "squirrels", "fats", "carbohydrates", "alimentaryFiber", "water", "additional"];
 
     /**
      * @return String
@@ -197,13 +196,5 @@ class Product implements Entity
     {
         $this->additional = $additional;
         return $this;
-    }
-
-    /**
-     * Function for saving product in database
-     */
-    public function save()
-    {
-        // TODO: Implement save() method.
     }
 }
