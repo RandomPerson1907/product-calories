@@ -4,16 +4,31 @@
 namespace App\Classes;
 
 
+use Sunra\PhpSimple\HtmlDomParser;
+
 class PageLoader implements \App\Interfaces\PageLoader
 {
-
-    public function loadPage($url)
-    {
-        // TODO: Implement loadPage() method.
-    }
+    private $page;
+    private $loadResult;
 
     public function getPage()
     {
-        // TODO: Implement getPage() method.
+        return $this->page;
+    }
+
+    public function getLoadResult()
+    {
+        return $this->loadResult;
+    }
+
+    public function load($url)
+    {
+        try {
+            $this->page = $this->page = HtmlDomParser::file_get_html($url, false, null, 0);
+            $this->loadResult = true;
+        } catch (\Exception $e) {
+            $this->page = false;
+            $this->loadResult = false;
+        }
     }
 }
