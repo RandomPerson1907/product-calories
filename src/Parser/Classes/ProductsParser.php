@@ -47,7 +47,6 @@ class ProductsParser extends Parser implements \Parser\Interfaces\ProductsParser
                 ->setLink($this->getLink());
 
             $products[] = $product;
-            break;
         }
 
         return $products;
