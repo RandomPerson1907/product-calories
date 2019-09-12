@@ -23,8 +23,6 @@ class Application
             foreach ($productsParser->getProducts($category->getLink()) as $product) {
                 $product->setCategoryId($category->getId());
                 $product->save(DB_PRODUCTS_TABLE);
-
-                dd($product);
             }
         }
     }

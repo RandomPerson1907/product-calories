@@ -39,24 +39,6 @@ abstract class Entity
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getExcept()
-    {
-        return $this->except;
-    }
-
-    /**
-     * @param mixed $except
-     * @return Entity
-     */
-    public function setExcept($except)
-    {
-        $this->except = $except;
-        return $this;
-    }
-
     public function save(String $table)
     {
         $this->setTable($table);
@@ -85,8 +67,9 @@ abstract class Entity
     {
         $columnsNames = "";
         foreach ($this->parameters as $key => $value) {
-            $columnsNames = "{$key}, ";
+            $columnsNames .= "{$key}, ";
         }
+
         $columnsNames = substr($columnsNames, 0, strlen($columnsNames) - 2);
 
         return $columnsNames;

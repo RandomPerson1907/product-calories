@@ -35,17 +35,24 @@ class Database
     public static function runQuery(string $sql, $parameters)
     {
         $sth = self::$dbHandle->prepare($sql);
-
-        foreach ($parameters as $parameterKey => $parameterValue) {
-            $sth->bindParam(":{$parameterKey}", $parameterValue);
-        }
-
-        $result = $sth->execute();
+        $result = $sth->execute(self::bindParameters($parameters));
 
         if ($id = self::$dbHandle->lastInsertId()) {
-            return (int)self::$dbHandle->lastInsertId();
-        } else {
-            return $result;
+            return (int)$id;
+        } else if (!$result) {
+            print self::$dbHandle->errorInfo();
         }
+
+        return $result;
+    }
+
+    public static function bindParameters(array $parameters)
+    {
+        $binds = [];
+        foreach ($parameters as $parameterKey => $parameterValue) {
+            $binds[":{$parameterKey}"] = $parameterValue;
+        }
+
+        return $binds;
     }
 }
